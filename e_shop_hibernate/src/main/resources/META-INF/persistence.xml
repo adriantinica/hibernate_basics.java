@@ -5,13 +5,13 @@
 
     <persistence-unit name="e-shop-main">
 
-        <!--class>org.hibernate.example.Book</class-->
+        <class>org.hibernate.example.Book</class>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <properties>
 
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/e_shop_hb"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5434/e_shop_hb"/>
             <property name="jakarta.persistence.jdbc.user" value="postgres" />
             <property name="jakarta.persistence.jdbc.password" value="laser112" />
             
