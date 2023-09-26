@@ -1,62 +1,59 @@
 package student.example.domain;
 
 import java.util.UUID;
-
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@ToString
+@NoArgsConstructor
 @Entity(name = "products")
 public class Product {
 
-    @Id
-    @GeneratedValue()
-    UUID id;
+    @Setter                                     //lombok
+    @Getter                                     //lombok
+    @Id                                         // hibernate
+    @GeneratedValue()                           // hibernate
+    private UUID id;
 
 
-    @Column(length = 100, name =" full_name ")
-    String name;
+    @Setter                                     //lombok
+    @Getter                                     //lombok
+    @Column(length = 50, name =" full_name ")   // hibernate
+    private String name;
+
+    @Setter                                     //lombok
+    @Getter 
+    @Column(length = 160)
+    private String image;
+
+    @Setter                                     //lombok
+    @Getter 
+    private Money price;
+
+
+    //Association (with hibernate)
+    @ManyToOne
+    private Category category;
+    @OneToOne
+    private Money money;
 
     
-    public Product() {
-    }
-
-
-    public Product(UUID id, String name) {
-        this.id = id;
+    public Product(String name, String image, Money price) {
         this.name = name;
-    }
-
-
-    public UUID getId() {
-        return id;
-    }
-
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Product [id=" + id + ", name=" + name + "]";
+        this.image = image;
+        this.price = new Money(0, image);
     }
 
     
     
     
 }
+
