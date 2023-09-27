@@ -1,6 +1,9 @@
 package student.example.domain;
 
 import java.util.UUID;
+
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,43 +20,46 @@ import lombok.ToString;
 @Entity(name = "products")
 public class Product {
 
-    @Setter                                     //lombok
-    @Getter                                     //lombok
-    @Id                                         // hibernate
-    @GeneratedValue()                           // hibernate
+    @Setter                                    
+    @Getter                                     
+    @Id                                         
+    @GeneratedValue()                           
     private UUID id;
 
 
-    @Setter                                     //lombok
-    @Getter                                     //lombok
-    @Column(length = 50, name =" full_name ")   // hibernate
+    @Setter                                     
+    @Getter                                    
+    @Column(length = 50, name =" full_name ")  
     private String name;
 
-    @Setter                                     //lombok
+    @Setter                                     
     @Getter 
     @Column(length = 160)
     private String image;
 
-    @Setter                                     //lombok
-    @Getter 
-    private Money price;
+   
 
 
     //Association (with hibernate)
+    @Setter                                     
+    @Getter 
     @ManyToOne
     private Category category;
+    
+    @Setter                                     
+    @Getter
     @OneToOne
-    private Money money;
+    private Money price;
 
     
-    public Product(String name, String image, Money price) {
+    public Product(String name, String image) {
         this.name = name;
         this.image = image;
-        this.price = new Money(0, image);
     }
 
     
     
     
 }
+
 
