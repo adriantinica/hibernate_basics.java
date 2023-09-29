@@ -1,5 +1,8 @@
 package student.example.domain;
 
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.util.Base64;
 import java.util.UUID;
 
 
@@ -20,19 +23,21 @@ import lombok.ToString;
 @Entity(name = "products")
 public class Product {
 
+      
+
     @Setter                                    
     @Getter                                     
     @Id                                         
     @GeneratedValue()                           
-    private UUID id;
+    private UUID id ;
 
 
-    @Setter                                     
+    @Setter                                    
     @Getter                                    
-    @Column(length = 50, name =" full_name ")  
+    @Column(length = 50, name =" full_name ")   
     private String name;
 
-    @Setter                                     
+    @Setter                                    
     @Getter 
     @Column(length = 160)
     private String image;
@@ -42,24 +47,29 @@ public class Product {
 
     //Association (with hibernate)
     @Setter                                     
-    @Getter 
     @ManyToOne
     private Category category;
     
     @Setter                                     
-    @Getter
     @OneToOne
     private Money price;
 
     
     public Product(String name, String image) {
+        //this.id =UUID.randomUUID();
         this.name = name;
         this.image = image;
-    }
+        //this.id = UUID.randomUUID();
 
-    
-    
-    
-}
+        // TWO FAILD ATEMPTS TO REDUCE UUID length
+        
+        //String uuid = String.format("%040d", Long.parseLong(id.toString().replace("-", "").replaceAll("[^0-9a-fA-F]", ""), 16));
+        //String uuid16digits = uuid.substring(uuid.length() -16 );
+        //this.id = UUID.fromString(uuid16digits);
+
+        //String uuid = String.format("%040d", new BigInteger(id.toString().replace("-", ""), 16));
+        //String uuid16digits = uuid.substring(uuid.length() - 16);
+        //this.id = UUID.fromString(uuid16digits);
+    }
 
 
